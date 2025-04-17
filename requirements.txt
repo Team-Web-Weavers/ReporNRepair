@@ -1,0 +1,29 @@
+# --- Flask + PostgreSQL ---
+flask
+flask-cors
+psycopg2-binary
+
+# --- Ollama (Local LLMs like Gemma) ---
+ollama
+
+# --- Hugging Face Transformers ---
+transformers
+datasets
+huggingface-hub
+accelerate
+sentencepiece  # Required for some models
+
+# --- TensorFlow and Keras ---
+tensorflow
+keras  # optional: only if you need standalone Keras API
+
+# --- Core ML/Data Science Libraries ---
+numpy
+pandas
+scikit-learn
+
+# --- Optional Add-ons ---
+tqdm           # Progress bars
+matplotlib     # Plotting
+seaborn        # Nice visualizations
+python-dotenv  # For environment variable support (.env)

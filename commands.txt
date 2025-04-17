@@ -1,0 +1,79 @@
+=========================
+🛢️  SQL COMMANDS
+=========================
+Install POSTGRESQL using th bat file , then remember the password 
+
+check installation :
+CMD -> psql --version 
+ACCESS PSQL Command Line Client
+psql -U POSTGRESQL
+then ....
+
+1) CREATE USER 
+
+CREATE USER <your_username> WITH PASSWORD 'your_password';
+
+2) CREATE DATABASE
+
+CREATE DATABASE hackurway_db;
+
+
+3) GRANT ALL PERMISSION TO THE USER
+
+GRANT ALL PRIVILEGES ON DATABASE hackurway_db TO <username>;
+
+ALTER USER <username> WITH SUPERUSER;
+
+
+
+=========================
+🐙 GIT COMMANDS
+=========================
+# Initialize Repo:
+
+
+# Clone Repo from Specific Branch:
+git clone -b branch-name https://github.com/username/repo.git
+
+
+# Add & Commit from Specific Branch:
+git checkout branch-name
+git add .
+git commit -m "Your commit message"
+
+
+# Push to Specific Branch:
+git push origin branch-name
+
+
+# Pull from Specific Branch:
+git pull origin branch-name
+
+
+# Create/Switch Branch:
+git checkout -b branch-name
+
+
+
+=========================
+⚛️ REACT COMMANDS
+=========================
+npm i ( evry time after you pull)
+npm run dev
+
+
+=========================
+ 🧰 PYTHON
+=========================
+
+pip install -r requirements.txt
+to run python :
+cd <directory> --here--> cd backend
+python app.py
+
+
+=========================
+ OTHER UTILITIES / TIPS
+=========================
+
+1) Double click the install_tools.bat file to download all externals like ollama and postgresql

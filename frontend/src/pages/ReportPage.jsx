@@ -139,10 +139,10 @@ const ReportPage = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-emerald-200 to-emerald-300 py-12 px-4">
+    <div className="bg-gray-200 py-12 px-4 text-gray-600">
       <div className="container mx-auto max-w-3xl">
         <div className="bg-white rounded-lg shadow-md p-8">
-          <h1 className="text-3xl font-bold text-center mb-8 font-heading text-gray-600">Report a Problem</h1>
+          <h1 className="text-3xl font-bold text-center mb-8 font-heading text-sky-600">Report a Problem</h1>
           
           {isSubmitted ? (
             <div className="text-center py-8">
@@ -150,19 +150,19 @@ const ReportPage = () => {
                 <FiCheck size={32} />
               </div>
               <h2 className="text-2xl font-semibold mb-2">Thank You!</h2>
-              <p className="text-neutral-600 mb-4">Your report has been submitted successfully.</p>
-              <p className="text-neutral-500">You will receive updates on the progress of your report.</p>
+              <p className="text-gray-600 mb-4">Your report has been submitted successfully.</p>
+              <p className="text-gray-500">You will receive updates on the progress of your report.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Location field */}
               <div>
-                <label htmlFor="location" className="block text-sm font-medium text-neutral-700 mb-1">
+                <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-1">
                   Location <span className="text-error">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FiMapPin className="text-neutral-500" />
+                    <FiMapPin className="text-gray-500" />
                   </div>
                   <input
                     id="location"
@@ -170,7 +170,7 @@ const ReportPage = () => {
                     type="text"
                     value={formData.location}
                     onChange={handleChange}
-                    className={`block w-full pl-10 pr-3 py-2 border ${errors.location ? 'border-error' : 'border-neutral-300'} rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 text-gray-600`}
+                    className={`block w-full pl-10 pr-3 py-2 border ${errors.location ? 'border-error' : 'border-gray-300'} rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500`}
                     placeholder="Enter address or describe location"
                   />
                 </div>
@@ -179,19 +179,19 @@ const ReportPage = () => {
               
               {/* Problem Type dropdown */}
               <div>
-                <label htmlFor="problemType" className="block text-sm font-medium text-neutral-700 mb-1">
+                <label htmlFor="problemType" className="block text-sm font-medium text-gray-700 mb-1">
                   Problem Type <span className="text-error">*</span>
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FiAlertCircle className="text-neutral-500" />
+                    <FiAlertCircle className="text-gray-500" />
                   </div>
                   <select
                     id="problemType"
                     name="problemType"
                     value={formData.problemType}
                     onChange={handleChange}
-                    className={`block w-full pl-10 pr-3 py-2 border ${errors.problemType ? 'border-error' : 'border-neutral-300'} rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 text-gray-600`}
+                    className={`block w-full pl-10 pr-3 py-2 border ${errors.problemType ? 'border-error' : 'border-gray-300'} rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500`}
                   >
                     <option value="" disabled>Select a problem type</option>
                     {problemTypes.map((type, index) => (
@@ -204,7 +204,7 @@ const ReportPage = () => {
               
               {/* Description textarea */}
               <div>
-                <label htmlFor="description" className="block text-sm font-medium text-neutral-700 mb-1">
+                <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
                   Description <span className="text-error">*</span>
                 </label>
                 <textarea
@@ -213,7 +213,7 @@ const ReportPage = () => {
                   rows={4}
                   value={formData.description}
                   onChange={handleChange}
-                  className={`block w-full px-3 py-2 border ${errors.description ? 'border-error' : 'border-neutral-300'} rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 text-gray-600`}
+                  className={`block w-full px-3 py-2 border ${errors.description ? 'border-error' : 'border-gray-300'} rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500`}
                   placeholder="Please describe the problem in detail"
                 />
                 {errors.description && <p className="mt-1 text-sm text-error">{errors.description}</p>}
@@ -222,12 +222,12 @@ const ReportPage = () => {
               {/* Contact Information */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-neutral-700 mb-1">
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
                     Phone Number
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FiPhone className="text-neutral-500" />
+                      <FiPhone className="text-gray-500" />
                     </div>
                     <input
                       id="phone"
@@ -235,7 +235,7 @@ const ReportPage = () => {
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
-                      className={`block w-full pl-10 pr-3 py-2 border ${errors.phone ? 'border-error' : 'border-neutral-300'} rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 text-gray-600`}
+                      className={`block w-full pl-10 pr-3 py-2 border ${errors.phone ? 'border-error' : 'border-gray-300'} rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500`}
                       placeholder="Your phone number"
                     />
                   </div>
@@ -243,12 +243,12 @@ const ReportPage = () => {
                 </div>
                 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                     Email Address
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FiMail className="text-neutral-500" />
+                      <FiMail className="text-gray-500" />
                     </div>
                     <input
                       id="email"
@@ -256,7 +256,7 @@ const ReportPage = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className={`block w-full pl-10 pr-3 py-2 border ${errors.email ? 'border-error' : 'border-neutral-300'} rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 text-gray-600`}
+                      className={`block w-full pl-10 pr-3 py-2 border ${errors.email ? 'border-error' : 'border-gray-300'} rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500`}
                       placeholder="Your email address"
                     />
                   </div>
@@ -267,12 +267,12 @@ const ReportPage = () => {
               {/* Date and Image Upload */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="date" className="block text-sm font-medium text-neutral-700 mb-1">
+                  <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-1">
                     Date
                   </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                      <FiCalendar className="text-neutral-500" />
+                      <FiCalendar className="text-gray-500" />
                     </div>
                     <input
                       id="date"
@@ -280,17 +280,17 @@ const ReportPage = () => {
                       type="date"
                       value={formData.date}
                       onChange={handleChange}
-                      className="block w-full pl-10 pr-3 py-2 border border-neutral-300 rounded-md shadow-sm focus:ring-primary-500 focus:border-primary-500 text-gray-600"
+                      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="image" className="block text-sm font-medium text-neutral-700 mb-1">
+                  <label htmlFor="image" className="block text-sm font-medium text-gray-700 mb-1">
                     Upload Image
                   </label>
                   <div className="flex items-center">
-                    <label className="relative cursor-pointer bg-white py-2 px-4 border border-neutral-300 rounded-md shadow-sm font-medium text-neutral-700 hover:bg-neutral-50 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500">
+                    <label className="relative cursor-pointer bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm font-medium text-gray-700 hover:bg-gray-50 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-sky-500">
                       <FiUpload className="inline-block mr-2" />
                       <span>Choose file</span>
                       <input
@@ -302,7 +302,7 @@ const ReportPage = () => {
                         className="sr-only"
                       />
                     </label>
-                    <span className="ml-3 text-sm text-neutral-500">
+                    <span className="ml-3 text-sm text-gray-500">
                       {formData.image ? formData.image.name : 'No file chosen'}
                     </span>
                   </div>
@@ -312,7 +312,7 @@ const ReportPage = () => {
               {/* Image Preview */}
               {previewImage && (
                 <div className="mt-2">
-                  <label className="block text-sm font-medium text-neutral-700 mb-2">Image Preview</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Image Preview</label>
                   <img
                     src={previewImage}
                     alt="Preview"
@@ -325,7 +325,7 @@ const ReportPage = () => {
               <div className="pt-4">
                 <button
                   type="submit"
-                  className="btn btn-success w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:bg-primary-300 disabled:cursor-not-allowed"
+                  className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 disabled:bg-sky-300 disabled:cursor-not-allowed"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Report'}

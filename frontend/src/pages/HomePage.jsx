@@ -41,7 +41,7 @@ const HomePage = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-500 to-primary-700 text-white py-16">
+      <section className="bg-gradient-to-r from-sky-600 to-sky-700 text-white py-16">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
             <div className="md:w-1/2 mb-8 md:mb-0">
@@ -53,7 +53,7 @@ const HomePage = () => {
               </p>
               <button
                 onClick={handleReportClick}
-                className="btn btn-success h-16"
+                className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors"
               >
                 Report a Problem
               </button>
@@ -62,7 +62,7 @@ const HomePage = () => {
               <img 
                 src="https://media.licdn.com/dms/image/D4D12AQH_22tmXTwUEA/article-cover_image-shrink_720_1280/0/1701773505898?e=2147483647&v=beta&t=an37z2_ncb3MkUdo58YZDn65Ri8mqho8pinTq494ygc" 
                 alt="Community reporting" 
-                className="rounded-lg shadow-lg"
+                className="rounded-lg shadow-xl/30"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src = 'https://via.placeholder.com/600x400?text=Community+Reporting';
@@ -74,37 +74,37 @@ const HomePage = () => {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-16 bg-gradient-to-r from-emerald-200 to-emerald-300">
-        <div className="container mx-auto px-4 text-gray-700">
-          <h2 className="text-3xl font-bold text-center mb-12 font-heading">How It Works</h2>
+      <section className="py-16 bg-gray-200">
+        <div className="container mx-auto px-4">
+          <h2 className="text-gray-600 text-3xl font-bold text-center mb-12 font-heading">How It Works</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-card text-center">
-              <div className="bg-primary-100 text-primary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-600">
+            <div className="bg-white p-6 rounded-lg shadow-card text-center shadow-xl/10">
+              <div className="bg-sky-100 text-sky-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold">1</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Report an Issue</h3>
-              <p className="text-neutral-600">
+              <p className="text-gray-600">
                 Submit details about the problem you've noticed in your community.
               </p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-card text-center">
-              <div className="bg-primary-100 text-primary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-white p-6 rounded-lg shadow-card text-center shadow-xl/10">
+              <div className="bg-sky-100 text-sky-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold">2</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">We Process It</h3>
-              <p className="text-neutral-600">
+              <p className="text-gray-600">
                 Your report is verified and forwarded to the relevant department.
               </p>
             </div>
             
-            <div className="bg-white p-6 rounded-lg shadow-card text-center">
-              <div className="bg-primary-100 text-primary-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-white p-6 rounded-lg shadow-card text-center shadow-xl/10">
+              <div className="bg-sky-100 text-sky-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl font-bold">3</span>
               </div>
               <h3 className="text-xl font-semibold mb-2">Problem Solved</h3>
-              <p className="text-neutral-600">
+              <p className="text-gray-600">
                 Track the progress and get notified when the issue is resolved.
               </p>
             </div>
@@ -115,14 +115,14 @@ const HomePage = () => {
       {/* Categories Section */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 font-heading">What Can You Report?</h2>
+          <h2 className="text-gray-100 text-3xl font-bold text-center mb-12 font-heading">What Can You Report?</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-gray-600">
             {categories.map((category, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-card border border-neutral-200 hover:border-primary-300 transition-colors">
-                <div className="text-primary-500 mb-4">{category.icon}</div>
+              <div key={index} className="bg-white p-6 rounded-lg shadow-card border border-gray-200 hover:border-sky-300 transition-colors">
+                <div className="text-sky-500 mb-4">{category.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{category.title}</h3>
-                <p className="text-neutral-600">{category.description}</p>
+                <p className="text-gray-600">{category.description}</p>
               </div>
             ))}
           </div>
@@ -130,39 +130,39 @@ const HomePage = () => {
       </section>
 
       {/* Impact Section */}
-      <section className="py-16 bg-gradient-to-r from-emerald-200 to-emerald-300">
-        <div className="container mx-auto px-4 text-gray-700">
-          <h2 className="text-3xl font-bold text-center mb-12 font-heading">Making an Impact</h2>
+      <section className="py-16 bg-gray-200">
+        <div className="container mx-auto px-4">
+          <h2 className="text-gray-600 text-3xl font-bold text-center mb-12 font-heading">Making an Impact</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary-500 mb-2">500+</div>
-              <p className="text-lg text-neutral-700">Issues Reported</p>
+              <div className="text-4xl font-bold text-sky-500 mb-2">500+</div>
+              <p className="text-lg text-gray-700">Issues Reported</p>
             </div>
             
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary-500 mb-2">85%</div>
-              <p className="text-lg text-neutral-700">Resolution Rate</p>
+              <div className="text-4xl font-bold text-sky-500 mb-2">85%</div>
+              <p className="text-lg text-gray-700">Resolution Rate</p>
             </div>
             
             <div className="text-center">
-              <div className="text-4xl font-bold text-primary-500 mb-2">12</div>
-              <p className="text-lg text-neutral-700">Communities Served</p>
+              <div className="text-4xl font-bold text-sky-500 mb-2">12</div>
+              <p className="text-lg text-gray-700">Communities Served</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="bg-primary-600 py-12">
-        <div className="container mx-auto px-4 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4 font-heading">Ready to Make a Difference?</h2>
+      <section className="bg-sky-600 text-white py-12">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-gray-100 text-3xl font-bold mb-4 font-heading">Ready to Make a Difference?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">
             Join our community of active citizens and help make your area a better place to live.
           </p>
           <button
             onClick={handleReportClick}
-            className="bg-white text-primary-600 hover:bg-neutral-100 px-6 py-3 rounded-md text-lg font-medium transition-colors text-gray-600"
+            className="bg-white text-sky-600 hover:bg-gray-100 px-6 py-3 rounded-md text-lg font-medium transition-colors"
           >
             Report a Problem Now
           </button>

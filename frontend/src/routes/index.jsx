@@ -5,6 +5,7 @@ import SignupPage from '../pages/SignupPage';
 import ReportPage from '../pages/ReportPage';
 import Layout from '../components/layout/Layout';
 import ProtectedRoute from './ProtectedRoute';
+import DashboardPage from '../pages/DashboardPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 const router = createBrowserRouter([
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
         path: 'report', 
         element: <ProtectedRoute><ReportPage /></ProtectedRoute> 
       },
+      { path: 'dashboard', element: <DashboardPage /> },
       { path: '*', element: <NotFoundPage /> }
     ]
   }

@@ -40,7 +40,8 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             <Link to="/" className="hover:text-teal-300 transition-colors">Home</Link>
             <Link to="/" className="hover:text-teal-300 transition-colors">About</Link>
-            <Link to="/dashboard" className="hover:text-teal-300 transition-colors">Dashboard</Link>
+            <Link to="/admindashboard" className="hover:text-teal-300 transition-colors">Admin Dashboard</Link>
+            <Link to="/userdashboard" className="hover:text-teal-300 transition-colors">User Dashboard</Link>
             <button 
               onClick={handleReportClick}
               className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md transition-colors"
@@ -71,7 +72,8 @@ const Navbar = () => {
           <div className="md:hidden py-4 space-y-3">
             <Link to="/" className="block hover:text-teal-300 transition-colors py-2">Home</Link>
             <Link to="/" className="block hover:text-teal-300 transition-colors py-2">About</Link>
-            <Link to="/dashboard" className="block hover:text-teal-300 transition-colors py-2">Dashboard</Link>
+            <Link to="/admindashboard" className="block hover:text-teal-300 transition-colors py-2">Admin Dashboard</Link>
+            <Link to="/userdashboard" className="block hover:text-teal-300 transition-colors py-2">User Dashboard</Link>
             <button 
               onClick={handleReportClick}
               className="block w-full bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md transition-colors"

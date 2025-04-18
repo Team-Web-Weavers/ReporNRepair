@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MdReportProblem } from "react-icons/md";
 import { HiXCircle, HiCheckCircle } from "react-icons/hi";
 
-const DashboardPage = () => {
+const AdminDashboardPage = () => {
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -53,9 +53,9 @@ const DashboardPage = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto py-10 px-4">
-      <h1 className="text-4xl font-bold mb-10 flex items-center gap-3 text-neutral-content">
-        🛠️ Admin Dashboard
+    <div className="max-w-6xl mx-auto py-10 px-4 bg-gray-200">
+      <h1 className="text-4xl font-bold mb-10 flex items-center gap-3 text-gray-600">
+        Admin Dashboard
       </h1>
 
       {loading ? (
@@ -121,4 +121,4 @@ const DashboardPage = () => {
   );
 };
 
-export default DashboardPage;
+export default AdminDashboardPage;

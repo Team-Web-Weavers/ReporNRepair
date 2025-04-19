@@ -28,7 +28,7 @@ const Navbar = () => {
           <img 
     src="\src\assets\logo.png" 
     alt="ReportNRepair Logo" 
-    className="w-18 h-18" 
+    className="w-16 h-16" 
   />
             <span className="text-white">ReportNRepair</span>
           </Link>

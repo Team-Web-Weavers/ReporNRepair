@@ -3,6 +3,7 @@ import suhanidhar from "../assets/suhani.jpg";
 import arnabdutta from "../assets/arnab.jpg";
 import mdrizwanmolla from "../assets/rizwan.png";
 import sanketdey from "../assets/sanket.jpg";
+import { Link } from 'react-router-dom';
 
 const AboutPage = () => {
   return (
@@ -191,25 +192,25 @@ const AboutPage = () => {
 </section>
       
 
-      {/* Contact CTA */}
-      <section className="bg-gray-50 py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6 text-gray-800">
-            Get In Touch
-          </h2>
-          <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
-            Have questions or suggestions? We'd love to hear from you. Reach out
-            to our team and let's make our communities better together.
-          </p>
-          <a
-            href="reportnrepair4@gmail.com"
-            className="inline-block bg-sky-600 text-white px-8 py-3 rounded-md hover:bg-sky-700 transition-colors"
-          >
-            Contact Us
-          </a>
-          
-        </div>
-      </section>
+
+        {/* Contact CTA */}
+        <section className="bg-gray-50 py-16">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-6 text-gray-800">
+              Get In Touch
+            </h2>
+            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+              Have questions or suggestions? We'd love to hear from you. Reach out
+              to our team and let's make our communities better together.
+            </p>
+            <Link
+              to="/contact"
+              className="inline-block bg-sky-600 text-white px-8 py-3 rounded-md hover:bg-sky-700 transition-colors"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </section>
     </div>
   );
 };

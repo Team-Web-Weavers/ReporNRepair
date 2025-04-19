@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { FiMapPin, FiAlertCircle, FiPhone, FiMail, FiCalendar, FiUpload, FiCheck } from 'react-icons/fi';
+import { FiMapPin, FiAlertCircle, FiPhone, FiMail, FiCalendar, FiUpload, FiCheck, FiX } from 'react-icons/fi';
 
 const ReportPage = () => {
   // Problem types for dropdown

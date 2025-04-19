@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX, FiTool } from 'react-icons/fi';
 
 const Navbar = () => {
   const { isAuthenticated, logout, user } = useAuth();
@@ -23,8 +23,13 @@ const Navbar = () => {
   return (
     <nav className="text-white shadow-md">
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
-          <Link to="/" className="font-heading text-xl font-bold flex items-center">
+        <div className="flex justify-between items-center py-2">
+          <Link to="/" className="font-heading text-xl font-semibold flex items-center">
+          <img 
+    src="\src\assets\logo.png" 
+    alt="ReportNRepair Logo" 
+    className="w-18 h-18" 
+  />
             <span className="text-white">ReportNRepair</span>
           </Link>
 
@@ -40,7 +45,8 @@ const Navbar = () => {
           <div className="hidden md:flex items-center space-x-6">
             <Link to="/" className="hover:text-teal-300 transition-colors">Home</Link>
             <Link to="/about" className="hover:text-teal-300 transition-colors">About</Link>
-            
+            {/* Add to your navigation links */}
+            <Link to="/track" className="hover:text-teal-300 transition-colors">Track Report</Link>
             {/* Show dashboard based on user type */}
             {isAuthenticated && (
               user?.userType === 'Admin' ? (
@@ -80,7 +86,7 @@ const Navbar = () => {
           <div className="md:hidden py-4 space-y-3">
             <Link to="/" className="block hover:text-teal-300 transition-colors py-2">Home</Link>
             <Link to="/about" className="block hover:text-teal-300 transition-colors py-2">About</Link>
-            
+            <Link to="/track" className="block hover:text-teal-300 transition-colors py-2">Track Report</Link>
             {/* Show dashboard based on user type */}
             {isAuthenticated && (
               user?.userType === 'Admin' ? (

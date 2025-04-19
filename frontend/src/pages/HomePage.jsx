@@ -14,6 +14,14 @@ const HomePage = () => {
     }
   };
 
+  const handleEmergencyClick = () => {
+    if (isAuthenticated) {
+      navigate('/emergency');
+    } else {
+      navigate('/emergency');
+    }
+  };
+
   // Sample problem categories
   const categories = [
     {
@@ -162,10 +170,16 @@ const HomePage = () => {
           </p>
           <button
             onClick={handleReportClick}
-            className="bg-white text-sky-600 hover:bg-gray-100 px-6 py-3 rounded-md text-lg font-medium transition-colors"
+            className="bg-white text-sky-600 hover:bg-gray-100 px-6 py-3 rounded-md text-lg font-medium transition-colors m-5"
           >
             Report a Problem Now
           </button>
+          <button 
+  onClick={handleEmergencyClick}
+  className="bg-red-400 text-sky-100 hover:bg-red-500 px-6 py-3 rounded-md text-lg font-medium transition-colors m-5"
+>
+  Emergency Report
+</button>
         </div>
       </section>
     </div>

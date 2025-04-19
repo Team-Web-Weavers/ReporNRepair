@@ -207,6 +207,7 @@ const AboutPage = () => {
           >
             Contact Us
           </a>
+          
         </div>
       </section>
     </div>

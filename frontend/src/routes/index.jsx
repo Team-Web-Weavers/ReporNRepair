@@ -4,10 +4,16 @@ import AboutPage from '../pages/AboutPage';
 import LoginPage from '../pages/LoginPage';
 import SignupPage from '../pages/SignupPage';
 import ReportPage from '../pages/ReportPage';
+import ContactPage from '../pages/ContactPage';
+import EmergencyReportPage from '../pages/EmergencyReportPage';
+import StatusTrackingPage from '../pages/StatusTrackingPage';
+import FAQPage from '../pages/FAQPage';
+
 import Layout from '../components/layout/Layout';
 import ProtectedRoute from './ProtectedRoute';
 import AdminDashboardPage from '../pages/AdminDashboardPage';
 import UserDashboardPage from '../pages/UserDashboardPage';
+
 import NotFoundPage from '../pages/NotFoundPage';
 
 const router = createBrowserRouter([
@@ -25,7 +31,11 @@ const router = createBrowserRouter([
       },
       { path: 'admindashboard', element: <AdminDashboardPage /> },
       { path: 'userdashboard', element: <UserDashboardPage /> },
-      { path: '*', element: <NotFoundPage /> }
+      { path: '*', element: <NotFoundPage /> },
+      { path: 'contact', element: <ContactPage /> },
+      { path: 'faq', element: <FAQPage /> },
+      { path: 'emergency', element: <EmergencyReportPage /> },
+      { path: 'track', element: <StatusTrackingPage /> }
     ]
   }
 ]);

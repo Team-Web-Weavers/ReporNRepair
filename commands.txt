@@ -6,7 +6,7 @@ Install POSTGRESQL using th bat file , then remember the password
 check installation :
 CMD -> psql --version 
 ACCESS PSQL Command Line Client
-psql -U POSTGRESQL
+psql -U POSTGRES
 then ....
 
 1) CREATE USER 

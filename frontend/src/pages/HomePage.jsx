@@ -53,7 +53,7 @@ const HomePage = () => {
               </p>
               <button
                 onClick={handleReportClick}
-                className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors"
+                className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-md text-lg font-medium transition-colors cursor-pointer"
               >
                 Report a Problem
               </button>

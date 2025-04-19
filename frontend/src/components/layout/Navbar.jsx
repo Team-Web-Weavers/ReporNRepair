@@ -39,7 +39,7 @@ const Navbar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
             <Link to="/" className="hover:text-teal-300 transition-colors">Home</Link>
-            <Link to="/" className="hover:text-teal-300 transition-colors">About</Link>
+            <Link to="/about" className="hover:text-teal-300 transition-colors">About</Link>
             
             {/* Show dashboard based on user type */}
             {isAuthenticated && (
@@ -79,7 +79,7 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="md:hidden py-4 space-y-3">
             <Link to="/" className="block hover:text-teal-300 transition-colors py-2">Home</Link>
-            <Link to="/" className="block hover:text-teal-300 transition-colors py-2">About</Link>
+            <Link to="/about" className="block hover:text-teal-300 transition-colors py-2">About</Link>
             
             {/* Show dashboard based on user type */}
             {isAuthenticated && (

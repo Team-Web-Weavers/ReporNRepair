@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FiMail, FiLock } from 'react-icons/fi';
+import { FiMail, FiLock, FiUserCheck } from 'react-icons/fi';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('Citizen');
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -14,16 +15,13 @@ const LoginPage = () => {
     e.preventDefault();
     setError('');
     
-    // Simple validation
-    if (!email || !password) {
+    if (!email || !password || !userType) {
       setError('Please fill in all fields');
       return;
     }
     
-    // For demo purposes, we'll just log the user in with the provided email
-    // In a real app, you would validate against a backend
-    login({ email });
-    navigate('/report');
+    login({ email, userType });
+    navigate(userType === 'Admin' ? '/admindashboard' : '/userdashboard');
   };
 
   return (
@@ -38,6 +36,26 @@ const LoginPage = () => {
         )}
         
         <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label htmlFor="userType" className="block text-sm font-medium text-gray-700 mb-1">
+              User Type
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <FiUserCheck className="text-gray-500" />
+              </div>
+              <select
+                id="userType"
+                value={userType}
+                onChange={(e) => setUserType(e.target.value)}
+                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
+              >
+                <option value="Citizen">Citizen</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+          </div>
+
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email Address

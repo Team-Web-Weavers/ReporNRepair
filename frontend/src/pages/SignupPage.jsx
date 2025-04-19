@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FiUser, FiMail, FiLock } from 'react-icons/fi';
+import { FiUser, FiMail, FiAlertCircle, FiLock, FiUserCheck } from 'react-icons/fi';
 
 const SignupPage = () => {
+  const [userType, setUserType] = useState('Citizen'); // Move this inside component
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +18,7 @@ const SignupPage = () => {
     setError('');
     
     // Simple validation
-    if (!name || !email || !password || !confirmPassword) {
+    if (!name || !email || !password || !confirmPassword || !userType) {
       setError('Please fill in all fields');
       return;
     }
@@ -27,10 +28,9 @@ const SignupPage = () => {
       return;
     }
     
-    // For demo purposes, we'll just sign up the user with the provided information
-    // In a real app, you would register with a backend
-    signup({ name, email });
-    navigate('/report');
+    // Include userType in signup
+    signup({ name, email, password, userType });
+    navigate(userType === 'Admin' ? '/admindashboard' : '/userdashboard');
   };
 
   return (
@@ -45,7 +45,25 @@ const SignupPage = () => {
         )}
         
         <form onSubmit={handleSubmit} className="space-y-6">
+          
           <div>
+          <label htmlFor="userType" className="block text-sm font-medium text-gray-700 mb-1">
+    User Type
+  </label>
+  <div className="relative">
+    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      <FiUserCheck className="text-gray-500" />
+    </div>
+    <select
+      id="userType"
+      value={userType}
+      onChange={(e) => setUserType(e.target.value)}
+      className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
+    >
+      <option value="Citizen">Citizen</option>
+      <option value="Admin">Admin</option>
+    </select>
+  </div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
               Full Name
             </label>

@@ -8,18 +8,25 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  const login = (userData) => {
-    // This would typically make an API call
-    setIsAuthenticated(true);
-    setUser(userData);
-  };
 
   const signup = (userData) => {
-    // This would typically make an API call
+    // You might want to make an API call here
+    setUser({
+      name: userData.name,
+      email: userData.email,
+      userType: userData.userType,
+    });
     setIsAuthenticated(true);
-    setUser(userData);
+    // Store the user type in localStorage if needed
+    localStorage.setItem('userType', userData.userType);
   };
-
+  const login = (userData) => {
+    setUser({
+      email: userData.email,
+      userType: userData.userType
+    });
+    setIsAuthenticated(true);
+  };
   const logout = () => {
     setIsAuthenticated(false);
     setUser(null);

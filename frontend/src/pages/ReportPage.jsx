@@ -16,6 +16,59 @@ const ReportPage = () => {
     'Other'
   ];
 
+  const handleImageChange = async (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const selectedFile = e.target.files[0];
+      setImageValidation({ isLoading: true, isValid: null, message: '' });
+  
+      try {
+        // Create FormData to send the image
+        const formData = new FormData();
+        formData.append('image', selectedFile);
+  
+        // Make API call to validate image
+        const response = await fetch('YOUR_API_ENDPOINT/validate-image', {
+          method: 'POST',
+          body: formData
+        });
+  
+        if (response.status === 200) {
+          setImageValidation({
+            isLoading: false,
+            isValid: true,
+            message: 'Image validated successfully'
+          });
+          
+          // Update form data and preview only if image is valid
+          setFormData(prev => ({
+            ...prev,
+            image: selectedFile
+          }));
+          
+          // Create preview URL
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            setPreviewImage(reader.result);
+          };
+          reader.readAsDataURL(selectedFile);
+        } else {
+          const data = await response.json();
+          setImageValidation({
+            isLoading: false,
+            isValid: false,
+            message: data.message || 'Invalid image'
+          });
+        }
+      } catch (error) {
+        setImageValidation({
+          isLoading: false,
+          isValid: false,
+          message: 'Error validating image'
+        });
+      }
+    }
+  };
+  
   // Form state
   const [formData, setFormData] = useState({
     location: '',
@@ -31,6 +84,11 @@ const ReportPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [imageValidation, setImageValidation] = useState({
+    isLoading: false,
+    isValid: null,
+    message: ''
+  });
 
   // Handle input changes
   const handleChange = (e) => {
@@ -49,23 +107,6 @@ const ReportPage = () => {
     }
   };
 
-  // Handle image upload
-  const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      const selectedFile = e.target.files[0];
-      setFormData(prev => ({
-        ...prev,
-        image: selectedFile
-      }));
-      
-      // Create preview URL
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setPreviewImage(reader.result);
-      };
-      reader.readAsDataURL(selectedFile);
-    }
-  };
 
   // Form validation
   const validateForm = () => {
@@ -305,10 +346,31 @@ const ReportPage = () => {
                     <span className="ml-3 text-sm text-gray-500">
                       {formData.image ? formData.image.name : 'No file chosen'}
                     </span>
+                    
+                    {/* Validation Status */}
+                    <div className="ml-4">
+                      {imageValidation.isLoading && (
+                        <span className="loading loading-spinner loading-md text-sky-600"></span>
+                      )}
+                      {imageValidation.isValid === true && (
+                        <FiCheck className="text-success text-xl" />
+                      )}
+                      {imageValidation.isValid === false && (
+                        <FiX className="text-error text-xl" />
+                      )}
+                    </div>
                   </div>
+                  
+                  {/* Validation Message */}
+                  {imageValidation.message && (
+                    <p className={`mt-1 text-sm ${
+                      imageValidation.isValid ? 'text-success' : 'text-error'
+                    }`}>
+                      {imageValidation.message}
+                    </p>
+                  )}
                 </div>
               </div>
-              
               {/* Image Preview */}
               {previewImage && (
                 <div className="mt-2">

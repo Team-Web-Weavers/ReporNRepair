@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { FiCheck, FiX, FiClock, FiAlertCircle } from 'react-icons/fi';
+import { FiCheck, FiX, FiClock, FiAlertCircle, FiMapPin, FiFileText, FiMoreVertical } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 import { useParams } from 'react-router-dom';
 
@@ -9,48 +8,59 @@ const UserDashboardPage = () => {
   const { user } = useAuth();
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('all');
 
-  // For demo purposes, we'll use mock data
-  // In a real app, you would fetch this from your API
+
+  const filteredReports = reports.filter(report => {
+    if (filter === 'all') return true;
+    return report.status === filter;
+  });
+
+  // Enhanced mock data
+  const mockReports = [
+    {
+      id: 1,
+      title: 'Road Damage',
+      description: 'Large pothole on Main Street causing traffic hazards. Multiple vehicles have reported damage.',
+      location: '123 Main St, Near Central Market',
+      status: 'approved',
+      priority: 'high',
+      date: '2024-04-15',
+      comments: 'Repair scheduled for next week',
+      category: 'Infrastructure'
+    },
+    {
+      id: 2,
+      title: 'Streetlight Issue',
+      description: 'Three consecutive streetlights not working in residential area, causing safety concerns.',
+      location: 'Central Park Area, Block B',
+      status: 'pending',
+      priority: 'medium',
+      date: '2024-04-17',
+      comments: 'Under review by maintenance team',
+      category: 'Public Safety'
+    },
+    {
+      id: 3,
+      title: 'Illegal Dumping',
+      description: 'Large amount of construction waste dumped near river bank.',
+      location: 'River Road, Behind Shopping Complex',
+      status: 'rejected',
+      priority: 'low',
+      date: '2024-04-16',
+      comments: 'Location not under city jurisdiction',
+      category: 'Environmental'
+    }
+  ];
+
   useEffect(() => {
-    // Simulate API call
     const fetchReports = async () => {
       try {
-        // Mock data - replace with actual API call
-        const mockReports = [
-          {
-            id: 1,
-            title: 'Road Damage',
-            description: 'Large pothole on Main Street',
-            location: '123 Main St',
-            status: 'approved',
-            date: '2024-04-15',
-            comments: 'Repair scheduled for next week'
-          },
-          {
-            id: 2,
-            title: 'Streetlight Issue',
-            description: 'Flickering streetlight near park',
-            location: 'Central Park Area',
-            status: 'pending',
-            date: '2024-04-17',
-            comments: 'Under review'
-          },
-          {
-            id: 3,
-            title: 'Illegal Dumping',
-            description: 'Trash dumped near river',
-            location: 'River Road',
-            status: 'rejected',
-            date: '2024-04-16',
-            comments: 'Location not under city jurisdiction'
-          }
-        ];
-
+        await new Promise(resolve => setTimeout(resolve, 1000));
         setReports(mockReports);
-        setLoading(false);
       } catch (error) {
         console.error('Error fetching reports:', error);
+      } finally {
         setLoading(false);
       }
     };
@@ -82,99 +92,127 @@ const UserDashboardPage = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-[calc(100vh-200px)]">
+      <div className="flex justify-center items-center min-h-screen bg-gray-100">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600"></div>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <div className="flex items-center justify-between mb-6">
-          <h1 className="text-2xl font-bold text-gray-800">My Reports</h1>
-          <div className="text-sm text-gray-600">
-            Total Reports: {reports.length}
-          </div>
-        </div>
-
-        {reports.length === 0 ? (
-          <div className="text-center py-8">
-            <FiAlertCircle className="mx-auto text-gray-400 mb-4" size={48} />
-            <p className="text-gray-600">No reports found</p>
-          </div>
-        ) : (
-          <div className="grid gap-6">
-            {reports.map((report) => (
-              <div
-                key={report.id}
-                className="border rounded-lg p-4 hover:shadow-md transition-shadow"
+    <div className="bg-gray-100 min-h-screen py-12 px-4">
+      <div className="container mx-auto max-w-6xl">
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          {/* Header Section */}
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-800 mb-2">My Reports</h1>
+              <p className="text-gray-600">Track and manage your submitted reports</p>
+            </div>
+            <div className="flex items-center space-x-4">
+              <select 
+                value={filter}
+                onChange={(e) => setFilter(e.target.value)}
+                className="border rounded-md px-3 py-2 text-gray-700 focus:ring-sky-500 focus:border-sky-500"
               >
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-800">
-                      {report.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm">{report.location}</p>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    {getStatusIcon(report.status)}
-                    <span
-                      className={`px-2 py-1 rounded-full text-xs font-medium capitalize ${getStatusBadgeClass(
-                        report.status
-                      )}`}
-                    >
-                      {report.status}
-                    </span>
-                  </div>
-                </div>
+                <option value="all">All Reports</option>
+                <option value="approved">Approved</option>
+                <option value="pending">Pending</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+          </div>
 
-                <p className="text-gray-700 mb-2">{report.description}</p>
-                
-                <div className="mt-4 flex justify-between items-center text-sm">
-                  <div className="text-gray-500">
-                    Reported on: {new Date(report.date).toLocaleDateString()}
-                  </div>
-                  {report.comments && (
-                    <div className="text-gray-600 italic">
-                      "{report.comments}"
-                    </div>
-                  )}
+          {/* Stats Section */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+            {[
+              { 
+                label: 'Total Reports',
+                value: reports.length,
+                icon: <FiFileText />,
+                color: 'bg-sky-500'
+              },
+              {
+                label: 'Approved',
+                value: reports.filter(r => r.status === 'approved').length,
+                icon: <FiCheck />,
+                color: 'bg-green-500'
+              },
+              {
+                label: 'Pending',
+                value: reports.filter(r => r.status === 'pending').length,
+                icon: <FiClock />,
+                color: 'bg-yellow-500'
+              },
+              {
+                label: 'Rejected',
+                value: reports.filter(r => r.status === 'rejected').length,
+                icon: <FiX />,
+                color: 'bg-red-500'
+              }
+            ].map((stat, index) => (
+              <div key={index} className="bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                <div className={`inline-flex items-center justify-center p-3 rounded-full ${stat.color} text-white mb-4`}>
+                  {stat.icon}
                 </div>
+                <h3 className="text-2xl font-bold text-gray-700">{stat.value}</h3>
+                <p className="text-gray-600">{stat.label}</p>
               </div>
             ))}
           </div>
-        )}
 
-        {/* Summary Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8">
-          {[
-            {
-              status: 'approved',
-              label: 'Approved',
-              color: 'bg-green-100 text-green-800'
-            },
-            {
-              status: 'pending',
-              label: 'Pending',
-              color: 'bg-yellow-100 text-yellow-800'
-            },
-            {
-              status: 'rejected',
-              label: 'Rejected',
-              color: 'bg-red-100 text-red-800'
-            }
-          ].map((item) => (
-            <div
-              key={item.status}
-              className={`${item.color} rounded-lg p-4 text-center`}
-            >
-              <div className="text-2xl font-bold mb-1">
-                {reports.filter((r) => r.status === item.status).length}
-              </div>
-              <div className="text-sm">{item.label} Reports</div>
+          {/* Reports List */}
+          {filteredReports.length === 0 ? (
+            <div className="text-center py-8 bg-gray-50 rounded-lg">
+              <FiAlertCircle className="mx-auto text-gray-400 mb-4" size={48} />
+              <p className="text-gray-600">
+                {filter === 'all' ? 'No reports found' : `No ${filter} reports found`}
+              </p>
             </div>
-          ))}
+          ) : (
+            <div className="grid md:grid-cols-1 gap-6">
+              {filteredReports.map((report) => (
+                <div
+                  key={report.id}
+                  className="bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow"
+                >
+                  <div className="p-6">
+                    <div className="flex items-center justify-between mb-4">
+                      <h3 className="text-xl font-semibold text-gray-800 flex items-center gap-2">
+                        <FiMapPin className="text-sky-500" />
+                        {report.title}
+                      </h3>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium capitalize ${getStatusBadgeClass(report.status)}`}>
+                        {report.status}
+                      </span>
+                    </div>
+
+                    <p className="text-gray-600 mb-4">{report.description}</p>
+
+                    <div className="space-y-2 mb-4">
+                      <p className="text-sm text-gray-600">
+                        📍 <span className="font-medium">Location:</span> {report.location}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        🏷️ <span className="font-medium">Category:</span> {report.category}
+                      </p>
+                      <p className="text-sm text-gray-600">
+                        📅 <span className="font-medium">Reported:</span> {new Date(report.date).toLocaleDateString()}
+                      </p>
+                    </div>
+
+                    {report.comments && (
+                      <div className="bg-gray-50 border-l-4 border-sky-500 p-4 mt-4">
+                        <p className="text-sm text-gray-700">
+                          <span className="font-bold">Status Update:</span>{" "}
+                          {report.comments}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

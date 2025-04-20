@@ -2,8 +2,10 @@
 import { useState, useEffect } from 'react';
 import { FiCheck, FiX, FiClock, FiAlertCircle } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
+import { useParams } from 'react-router-dom';
 
 const UserDashboardPage = () => {
+  const { userid } = useParams();
   const { user } = useAuth();
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);

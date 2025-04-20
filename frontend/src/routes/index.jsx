@@ -13,6 +13,7 @@ import Layout from '../components/layout/Layout';
 import ProtectedRoute from './ProtectedRoute';
 import AdminDashboardPage from '../pages/AdminDashboardPage';
 import UserDashboardPage from '../pages/UserDashboardPage';
+import WorkerDashboardPage from '../pages/WorkerDashboardPage';
 
 import NotFoundPage from '../pages/NotFoundPage';
 
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       },
       { path: 'admindashboard/:userid', element: <AdminDashboardPage /> },
       { path: 'userdashboard/:userid', element: <UserDashboardPage /> },
+      { path: 'workerdashboard/:userid', element: <WorkerDashboardPage /> },
       { path: '*', element: <NotFoundPage /> },
       { path: 'contact', element: <ContactPage /> },
       { path: 'faq', element: <FAQPage /> },

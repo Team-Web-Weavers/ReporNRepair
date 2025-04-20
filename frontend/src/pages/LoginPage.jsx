@@ -33,7 +33,7 @@ const LoginPage = () => {
       // Optionally handle response data
       console.log( response.data.status==='success'?'Login Succesful':"Login Unsuccessful");
       login({ email, userType });
-      navigate(userType === 'Admin' ? `/admindashboard${response.data.userid}` : `/userdashboard/${response.data.userid}`);
+      navigate('/');
     } catch (err) {
       console.error('Login error:', err.response?.data || err.message);
       setError(err.response?.data?.message || 'Registration failed');

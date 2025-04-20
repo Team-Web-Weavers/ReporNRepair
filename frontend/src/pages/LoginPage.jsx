@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FiMail, FiLock, FiUserCheck } from 'react-icons/fi';
+import axios from 'axios';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     
@@ -19,9 +20,26 @@ const LoginPage = () => {
       setError('Please fill in all fields');
       return;
     }
+    const userData = {
+      email: email,
+      password: password,
+      role: userType
+    };
+    console.log(userData);
+
+    try {
+      const response = await axios.post('http://localhost:5000/auth/login',userData,{headers: { "Content-Type": "application/json" }});
+
+      // Optionally handle response data
+      console.log( response.data.status==='success'?'Login Succesful':"Login Unsuccessful");
+      login({ email, userType });
+      navigate(userType === 'Admin' ? `/admindashboard${response.data.userid}` : `/userdashboard/${response.data.userid}`);
+    } catch (err) {
+      console.error('Login error:', err.response?.data || err.message);
+      setError(err.response?.data?.message || 'Registration failed');
+    }
     
-    login({ email, userType });
-    navigate(userType === 'Admin' ? '/admindashboard' : '/userdashboard');
+    
   };
 
   return (
@@ -51,6 +69,7 @@ const LoginPage = () => {
                 className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-sky-500 focus:border-sky-500"
               >
                 <option value="Citizen">Citizen</option>
+                <option value="Worker">Worker</option>
                 <option value="Admin">Admin</option>
               </select>
             </div>

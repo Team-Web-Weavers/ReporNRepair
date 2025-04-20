@@ -29,8 +29,8 @@ const router = createBrowserRouter([
         path: 'report', 
         element: <ProtectedRoute><ReportPage /></ProtectedRoute> 
       },
-      { path: 'admindashboard', element: <AdminDashboardPage /> },
-      { path: 'userdashboard', element: <UserDashboardPage /> },
+      { path: 'admindashboard/:userid', element: <AdminDashboardPage /> },
+      { path: 'userdashboard/:userid', element: <UserDashboardPage /> },
       { path: '*', element: <NotFoundPage /> },
       { path: 'contact', element: <ContactPage /> },
       { path: 'faq', element: <FAQPage /> },

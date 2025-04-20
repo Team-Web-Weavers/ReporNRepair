@@ -27,3 +27,6 @@ tqdm           # Progress bars
 matplotlib     # Plotting
 seaborn        # Nice visualizations
 python-dotenv  # For environment variable support (.env)
+
+# -- Security--
+Werkzeug

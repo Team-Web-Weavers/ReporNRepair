@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { MdReportProblem } from "react-icons/md";
+import { useParams } from 'react-router-dom';
 import { HiXCircle, HiCheckCircle } from "react-icons/hi";
 
 const AdminDashboardPage = () => {
+  const { userid } = useParams();
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(true);
 

@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { FiMapPin, FiUsers, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
+import homeImage from '../assets/home-image.jpg';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -68,7 +69,7 @@ const HomePage = () => {
             </div>
             <div className="md:w-1/2">
               <img 
-                src="https://media.licdn.com/dms/image/D4D12AQH_22tmXTwUEA/article-cover_image-shrink_720_1280/0/1701773505898?e=2147483647&v=beta&t=an37z2_ncb3MkUdo58YZDn65Ri8mqho8pinTq494ygc" 
+                src={homeImage} 
                 alt="Community reporting" 
                 className="rounded-lg shadow-xl/30"
                 onError={(e) => {

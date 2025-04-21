@@ -22,6 +22,7 @@ export const AuthProvider = ({ children }) => {
   };
   const login = (userData) => {
     setUser({
+      userid:userData.userid,
       email: userData.email,
       userType: userData.userType
     });

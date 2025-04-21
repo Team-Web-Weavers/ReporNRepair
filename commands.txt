@@ -24,6 +24,52 @@ GRANT ALL PRIVILEGES ON DATABASE hackurway_db TO <username>;
 
 ALTER USER <username> WITH SUPERUSER;
 
+=====================================
+-- USERS TABLE
+CREATE TABLE users (
+    userid VARCHAR(50) PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    role VARCHAR(10) CHECK (role IN ('Citizen', 'Worker', 'Admin')),
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- COMPLAINTS: Core complaint data submitted by citizens
+CREATE TABLE complaints (
+    complaint_id SERIAL PRIMARY KEY,
+    userid VARCHAR(50) REFERENCES users(userid) ON DELETE CASCADE,  -- must be a Citizen
+    description TEXT NOT NULL,
+    image BYTEA,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- COMPLAINT DETAILS: Normalized table for contact/address
+CREATE TABLE complaint_details (
+    complaint_id INT PRIMARY KEY REFERENCES complaints(complaint_id) ON DELETE CASCADE,
+    phone_number VARCHAR(15),
+    address TEXT
+);
+
+-- COMPLAINT ASSIGNMENTS: Links complaints to workers + status
+CREATE TABLE complaint_assignments (
+    assignment_id SERIAL PRIMARY KEY,
+    complaint_id INT REFERENCES complaints(complaint_id) ON DELETE CASCADE,
+    worker_id VARCHAR(50) REFERENCES users(userid) ON DELETE SET NULL,  -- must be a Worker
+    status VARCHAR(20) DEFAULT 'Pending' CHECK (status IN ('Pending', 'In Progress', 'Resolved')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- COMPLAINT STATUS LOGS: Optional audit trail of status changes (optional but useful)
+CREATE TABLE complaint_status_logs (
+    log_id SERIAL PRIMARY KEY,
+    complaint_id INT REFERENCES complaints(complaint_id) ON DELETE CASCADE,
+    worker_id VARCHAR(50),
+    status VARCHAR(20) CHECK (status IN ('Pending', 'In Progress', 'Resolved')),
+    changed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
 
 
 =========================

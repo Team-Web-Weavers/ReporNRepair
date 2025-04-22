@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { useState } from 'react';
 import { FiMenu, FiX, FiTool } from 'react-icons/fi';
-
+import websitelogo from '../../assets/logo.png';
 const Navbar = () => {
   const { isAuthenticated, logout, user } = useAuth();
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center py-2">
           <Link to="/" className="font-heading text-xl font-semibold flex items-center">
           <img 
-    src="\src\assets\logo.png" 
+    src = {websitelogo} 
     alt="ReportNRepair Logo" 
     className="w-16 h-16" 
   />

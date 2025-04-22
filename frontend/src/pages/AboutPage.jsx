@@ -1,7 +1,7 @@
 import { FiUsers, FiTarget, FiCode, FiHeart, FiGithub, FiLinkedin, FiInstagram} from "react-icons/fi";
 import suhanidhar from "../assets/suhani.jpg";
 import arnabdutta from "../assets/arnab.jpg";
-import mdrizwanmolla from "../assets/rizwan.png";
+import mdrizwanmolla from "../assets/rizwan_molla.jpg";
 import sanketdey from "../assets/sanket.jpg";
 import { Link } from 'react-router-dom';
 

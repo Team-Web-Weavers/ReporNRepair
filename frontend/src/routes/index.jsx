@@ -30,9 +30,11 @@ const router = createBrowserRouter([
         path: 'report', 
         element: <ProtectedRoute><ReportPage /></ProtectedRoute> 
       },
+      // remove the :userid from path if backend dependency (postgrSQL) not installed 
       { path: 'admindashboard/:userid', element: <AdminDashboardPage /> },
       { path: 'userdashboard/:userid', element: <UserDashboardPage /> },
       { path: 'workerdashboard/:userid', element: <WorkerDashboardPage /> },
+      
       { path: '*', element: <NotFoundPage /> },
       { path: 'contact', element: <ContactPage /> },
       { path: 'faq', element: <FAQPage /> },

@@ -12,6 +12,22 @@ const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+/*
+// Use this function to use the login process without postgreSQL
+
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    setError('');
+    
+    if (!email || !password || !userType) {
+      setError('Please fill in all fields');
+      return;
+    }
+    
+    login({ email, userType });
+    navigate('/');
+  };
+*/  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');

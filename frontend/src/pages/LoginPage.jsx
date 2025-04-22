@@ -12,10 +12,7 @@ const LoginPage = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-/*
-// Use this function to use the login process without postgreSQL
-
-    const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setError('');
     
@@ -27,7 +24,9 @@ const LoginPage = () => {
     login({ email, userType });
     navigate('/');
   };
-*/  
+
+/*
+  // Use this function to use the login process with postgreSQL
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -58,6 +57,7 @@ const LoginPage = () => {
     
     
   };
+*/
 
   return (
     <div className="flex items-center justify-center min-h-[calc(100vh-200px)] bg-gray-200 py-12 px-4 text-gray-600">
